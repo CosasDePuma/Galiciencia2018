@@ -5,12 +5,12 @@
   </div>
   <div class="login-card">
     <ion-item>
-      <ion-input type="text" placeholder="Usuario"></ion-input>
+      <ion-input type="text" [(ngModel)]="user" placeholder="Usuario"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-input type="password" placeholder="Contraseña"></ion-input>
+        <ion-input type="password" [(ngModel)]="pass" placeholder="Contraseña"></ion-input>
     </ion-item>
 
-    <button ion-button block (click)="login()"><b>Iniciar sesión</b></button>
+    <button ion-button block (click)="checkLogin()"><b>INICIAR SESIÓN</b></button>
   </div>
 </ion-content>
