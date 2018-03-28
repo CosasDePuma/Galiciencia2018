@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController, NavController } from 'ionic-angular';
 
+import { VotesPage } from '../votes/votes'
 import { RestProvider } from '../../providers/rest/rest';
 
 @Component({
@@ -10,10 +11,11 @@ import { RestProvider } from '../../providers/rest/rest';
 
 export class HomePage {
   
-  data: any;
+  data: any = undefined;
+  jurado: any = undefined;
 
-  user:string;
-  pass:string;
+  user:string = undefined;
+  pass:string = undefined;
 
   constructor(public navCtrl: NavController, private rest: RestProvider, private alertCtrl: AlertController) {
     this.getData();
@@ -23,17 +25,36 @@ export class HomePage {
     this.rest.getGalicienciaData().then(
       (res) => {
         this.data = JSON.parse(JSON.stringify(res)).data;
-        console.log(this.data);
       }
     );
   }
 
   checkLogin() {
-    if(this.user == undefined || this.pass == undefined || this.user == '' || this.pass == '') {
+    if(this.data == undefined) {
+      
+    } else if(this.user == undefined || this.pass == undefined || this.user == '' || this.pass == '') {
       this.emptyCredentials();
     } else {
-      console.log("Comprobación de datos");
+      this.checkCredentials(this.user, this.pass)
+      if(this.jurado == undefined) {
+        this.wrongCredentials()
+      } else {
+        this.navCtrl.push(VotesPage, {
+          data: this.data,
+          jurado: this.jurado
+        });
+      }
     }
+  }
+
+  checkCredentials(nombre: string, password: string) {
+    this.jurado = undefined
+
+    this.data.jurado.forEach(jurado => {
+      if(this.jurado == undefined && nombre == jurado.username && password == jurado.password) {
+        this.jurado = jurado;
+      }
+    });
   }
 
   emptyCredentials() {
