@@ -10,19 +10,18 @@ import { RestProvider } from '../../providers/rest/rest';
 
 export class HomePage {
   
-  users: any;
+  data: any;
 
   constructor(public navCtrl: NavController, public rest: RestProvider) {
   }
 
   login() {
 
-    var data = this.rest.getLoginJurado();
-    
-    if(data != null) {
-      console.log(data);
-    } else {
-      console.log("Inténtalo más tarde");
-    }
+    this.rest.getGalicienciaData().then(
+      (res) => {
+        this.data = JSON.parse(JSON.stringify(res)).data;
+        console.log(this.data);
+      }
+    );
   }
 }

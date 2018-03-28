@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import 'rxjs/add/operator/toPromise';
+
 /*
   Generated class for the RestProvider provider.
 
@@ -15,6 +17,7 @@ export class RestProvider {
   apiKey:string;
   restAPI:string;
   database: string;
+  databaseID: string;
 
   data: any;
 
@@ -23,26 +26,21 @@ export class RestProvider {
     this.year = "_2018";
     this.database = "galiciencia"
     this.apiKey = "6vFmPWoWi4kcWL9CEQujs5dzEbxs9O8M";
+    this.databaseID = "5abb1efa734d1d268cda3599";
 
     this.restAPI = "https://api.mlab.com/api/1/databases/"
       .concat(this.database
         .concat("/collections/"
           .concat(this.year
-              .concat("?apiKey="
-                .concat(this.apiKey)))));
+              .concat("/"
+                .concat(this.databaseID
+                  .concat("?apiKey="
+                    .concat(this.apiKey)))))));
 
   }
 
-  getLoginJurado() {
-
-    this.http.get(this.restAPI).subscribe(data => {
-      this.data = data[0].jurado;
-      //this.data = JSON.stringify(data);
-    }, err => {
-      this.data = err;
-    });
-
-    return this.data;
+  getGalicienciaData() {
+    return this.http.get(this.restAPI).toPromise();
   }
 
 }
