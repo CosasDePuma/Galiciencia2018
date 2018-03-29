@@ -39,7 +39,7 @@ export class HomePage {
       if(this.jurado == undefined) {
         this.wrongCredentials()
       } else {
-        this.navCtrl.push(VotesPage, {
+        this.navCtrl.setRoot(VotesPage, {
           data: this.data,
           jurado: this.jurado
         });
