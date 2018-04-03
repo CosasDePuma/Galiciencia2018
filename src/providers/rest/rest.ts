@@ -17,23 +17,38 @@ export class RestProvider {
   year: string = "_2018"; 
   apiKey:string = "6vFmPWoWi4kcWL9CEQujs5dzEbxs9O8M";
   database: string = "galiciencia";
-  databaseID: string = "5abb1efa734d1d268cda3599";
-
-  data: any;
 
   constructor(public http: HttpClient) {
+
+  }
+
+  getJuradoLogin() {
+    let databaseID = "5abb1efa734d1d268cda3599"; // login jurado
+
     this.restAPI = "https://api.mlab.com/api/1/databases/"
       .concat(this.database
         .concat("/collections/"
           .concat(this.year
               .concat("/"
-                .concat(this.databaseID
+                .concat(databaseID
                   .concat("?apiKey="
                     .concat(this.apiKey)))))));
 
+    return this.http.get(this.restAPI).toPromise();
   }
 
-  getGalicienciaData() {
+  getProyectos() {
+    let databaseID = "5ac3b673f36d287dbca62290"; // proyectos
+
+    this.restAPI = "https://api.mlab.com/api/1/databases/"
+      .concat(this.database
+        .concat("/collections/"
+          .concat(this.year
+              .concat("/"
+                .concat(databaseID
+                  .concat("?apiKey="
+                    .concat(this.apiKey)))))));
+
     return this.http.get(this.restAPI).toPromise();
   }
 
