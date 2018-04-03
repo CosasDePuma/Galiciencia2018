@@ -22,27 +22,27 @@ export class HomePage {
   }
 
   getData() {
-    this.rest.getGalicienciaData().then(
+    this.rest.getJuradoLogin().then(
       (res) => {
         this.data = JSON.parse(JSON.stringify(res)).data;
       }
-    );
+    )
   }
 
   checkLogin() {
     if(this.data == undefined) {
-      
+      // error de datos
     } else if(this.user == undefined || this.pass == undefined || this.user == '' || this.pass == '') {
-      this.emptyCredentials();
+      this.emptyCredentials()
     } else {
       this.checkCredentials(this.user, this.pass)
       if(this.jurado == undefined) {
         this.wrongCredentials()
       } else {
-        this.navCtrl.push(VotesPage, {
-          data: this.data,
-          jurado: this.jurado
-        });
+        this.navCtrl.setRoot(VotesPage, {
+          group: this.jurado.group,
+          group_member: this.jurado.group_member
+        })
       }
     }
   }
@@ -54,7 +54,7 @@ export class HomePage {
       if(this.jurado == undefined && nombre == jurado.username && password == jurado.password) {
         this.jurado = jurado;
       }
-    });
+    })
   }
 
   emptyCredentials() {
@@ -62,8 +62,8 @@ export class HomePage {
       title: 'Error',
       subTitle: 'Debe rellenar todos los campos.',
       buttons: ['Aceptar']
-    });
-    alert.present();
+    })
+    alert.present()
   }
 
   wrongCredentials() {
@@ -71,7 +71,7 @@ export class HomePage {
       title: 'Error',
       subTitle: 'Las credenciales de acceso no se corresponden a ningún usuario.',
       buttons: ['Aceptar']
-    });
-    alert.present();
+    })
+    alert.present()
   }
 }
