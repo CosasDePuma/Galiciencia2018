@@ -13,6 +13,48 @@
 </ion-header>
 
 
-<ion-content padding>
-  <p id="p"></p>
+<ion-content padding class="background-color">
+  <ion-card>
+    <ion-list>
+      <form>
+        <ion-item-divider>Proyecto</ion-item-divider>
+        <ion-item>
+          <ion-select [(ngModel)]="current_dropdown" [ngModelOptions]="{standalone: true}" (ionChange)="projectSelected()" interface="popover">
+            <ion-option *ngFor="let project of dropdown_menu" value="{{project.id}}">{{project.title}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item-divider>Valoraciones</ion-item-divider>
+        <ion-item>
+          <ion-range #ptCreatividad min="1" max="5" step="1" color="royal" value="1">
+            <ion-label class="slider-label" range-left>Creatividad</ion-label>
+          </ion-range>
+        </ion-item>
+        <ion-item>
+          <ion-range #ptMetodologia min="1" max="5" step="1" color="royal" value="1">
+            <ion-label class="slider-label" range-left>Metodología</ion-label>
+          </ion-range>
+        </ion-item>
+        <ion-item>
+          <ion-range #ptAutoria min="1" max="5" step="1" color="royal" value="1">
+            <ion-label class="slider-label" range-left>Autoría</ion-label>
+          </ion-range>
+        </ion-item>
+        <ion-item>
+          <ion-range #ptDefensaOral min="1" max="5" step="1" color="royal" value="1">
+            <ion-label class="slider-label" range-left>Defensa oral</ion-label>
+          </ion-range>
+        </ion-item>
+        <ion-item>
+          <ion-range #ptDecoracion min="1" max="5" step="1" color="royal" value="1">
+            <ion-label class="slider-label" range-left>Decoración</ion-label>
+          </ion-range>
+        </ion-item>
+
+        <div class="spacer" style="width:283.2px;height:15px;"></div>
+
+        <button ion-button color="royal" block>Puntuar</button>
+      </form>
+    </ion-list>
+  </ion-card>
 </ion-content>

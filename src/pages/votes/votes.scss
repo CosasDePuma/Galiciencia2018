@@ -1,3 +1,17 @@
 page-votes {
 
+    .background-color {
+        background: linear-gradient(10deg, #9d69a3, #47499e)
+    }
+    
+    ion-card ion-item ion-select {
+        position: absolute !important;
+        display: block !important;
+        max-width: 90% !important;
+        width: 90% !important;
+    }
+
+    .slider-label {
+        width: 40%;
+    }
 }
