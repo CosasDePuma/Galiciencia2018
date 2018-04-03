@@ -40,15 +40,9 @@ export class HomePage {
         this.wrongCredentials()
       } else {
         this.navCtrl.setRoot(VotesPage, {
-<<<<<<< HEAD
           group: this.jurado.group,
           group_member: this.jurado.group_member
         })
-=======
-          data: this.data,
-          jurado: this.jurado
-        });
->>>>>>> 4e94bd57762df9faa2ce04a28cde429668db2280
       }
     }
   }
