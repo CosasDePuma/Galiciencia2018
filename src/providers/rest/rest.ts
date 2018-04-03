@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -13,17 +13,17 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class RestProvider {
 
-  restAPI:string;
-  year: string = "_2018"; 
-  apiKey:string = "6vFmPWoWi4kcWL9CEQujs5dzEbxs9O8M";
-  database: string = "galiciencia";
+  restAPI:string
+  year: string = "_2018"
+  apiKey:string = "6vFmPWoWi4kcWL9CEQujs5dzEbxs9O8M"
+  database: string = "galiciencia"
 
   constructor(public http: HttpClient) {
 
   }
 
   getJuradoLogin() {
-    let databaseID = "5abb1efa734d1d268cda3599"; // login jurado
+    let databaseID = "5abb1efa734d1d268cda3599" // login jurado
 
     this.restAPI = "https://api.mlab.com/api/1/databases/"
       .concat(this.database
@@ -32,13 +32,28 @@ export class RestProvider {
               .concat("/"
                 .concat(databaseID
                   .concat("?apiKey="
-                    .concat(this.apiKey)))))));
+                    .concat(this.apiKey)))))))
 
-    return this.http.get(this.restAPI).toPromise();
+    return this.http.get(this.restAPI).toPromise()
   }
 
   getProyectos() {
-    let databaseID = "5ac3b673f36d287dbca62290"; // proyectos
+    let databaseID = "5ac3b673f36d287dbca62290" // proyectos
+
+    this.restAPI = "https://api.mlab.com/api/1/databases/"
+      .concat(this.database
+        .concat("/collections/"
+          .concat(this.year
+              .concat("/"
+                .concat(databaseID
+                  .concat("?apiKey="
+                    .concat(this.apiKey)))))))
+
+    return this.http.get(this.restAPI).toPromise()
+  }
+
+  updateProyectos(project_id: string, jurado_id: number, valoracion: number) {
+    let databaseID = "5ac3b673f36d287dbca62290" // proyectos
 
     this.restAPI = "https://api.mlab.com/api/1/databases/"
       .concat(this.database
@@ -49,7 +64,15 @@ export class RestProvider {
                   .concat("?apiKey="
                     .concat(this.apiKey)))))));
 
-    return this.http.get(this.restAPI).toPromise();
-  }
+    let options = new HttpHeaders()
+    options.append('Content-Type', 'application/json')
 
+    let updateValues = JSON.parse('{ "$set": { "proyectos.' + project_id + '.votes.' + jurado_id + '" : ' + valoracion + ' } }')
+
+    return this.http.put(
+      this.restAPI,
+      updateValues,
+      { headers: options }
+    ).toPromise()
+  }
 }
