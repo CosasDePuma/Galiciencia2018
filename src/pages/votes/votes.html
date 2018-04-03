@@ -23,34 +23,34 @@
             <form>
               <ion-item-divider>Proyecto</ion-item-divider>
               <ion-item>
-                <ion-select [(ngModel)]="current_dropdown" [ngModelOptions]="{standalone: true}" placeholder="Nombre del proyecto" (ionChange)="projectSelected()" interface="popover">
+                <ion-select [(ngModel)]="current_dropdown" [ngModelOptions]="{standalone: true}" placeholder="Nombre del proyecto" interface="popover">
                   <ion-option *ngFor="let project of dropdown_menu" value="{{project.id}}">{{project.title}}</ion-option>
                 </ion-select>
               </ion-item>
       
               <ion-item-divider>Valoraciones</ion-item-divider>
               <ion-item>
-                <ion-range #ptCreatividad min="1" max="5" step="1" value="1">
+                <ion-range [(ngModel)]="puntuacion[0]" [ngModelOptions]="{standalone: true}" min="1" max="5" step="1" value="1">
                   <ion-label class="slider-label" range-left>Creatividad</ion-label>
                 </ion-range>
               </ion-item>
               <ion-item>
-                <ion-range #ptMetodologia min="1" max="5" step="1" value="1">
+                <ion-range [(ngModel)]="puntuacion[1]" [ngModelOptions]="{standalone: true}" min="1" max="5" step="1" value="1">
                   <ion-label class="slider-label" range-left>Metodología</ion-label>
                 </ion-range>
               </ion-item>
               <ion-item>
-                <ion-range #ptAutoria min="1" max="5" step="1" value="1">
+                <ion-range [(ngModel)]="puntuacion[2]" [ngModelOptions]="{standalone: true}" min="1" max="5" step="1" value="1">
                   <ion-label class="slider-label" range-left>Autoría</ion-label>
                 </ion-range>
               </ion-item>
               <ion-item>
-                <ion-range #ptDefensaOral min="1" max="5" step="1" value="1">
+                <ion-range [(ngModel)]="puntuacion[3]" [ngModelOptions]="{standalone: true}" min="1" max="5" step="1" value="1">
                   <ion-label class="slider-label" range-left>Defensa oral</ion-label>
                 </ion-range>
               </ion-item>
               <ion-item>
-                <ion-range #ptDecoracion min="1" max="5" step="1" value="1">
+                <ion-range [(ngModel)]="puntuacion[4]" [ngModelOptions]="{standalone: true}" min="1" max="5" step="1" value="1">
                   <ion-label class="slider-label" range-left>Decoración</ion-label>
                 </ion-range>
               </ion-item>
@@ -58,7 +58,7 @@
           </ion-list>
         </ion-card>
 
-        <button ion-button block>Puntuar</button>
+        <button ion-button block (click)="sendPuntuacion()">Puntuar</button>
     </div> <!-- centrado -->
   </div> <!-- general -->
 </ion-content>
