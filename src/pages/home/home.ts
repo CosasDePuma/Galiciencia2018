@@ -3,6 +3,7 @@ import { AlertController, NavController } from 'ionic-angular';
 
 import { VotesPage } from '../votes/votes'
 import { RestProvider } from '../../providers/rest/rest';
+import { AdminPage } from '../admin/admin';
 
 @Component({
   selector: 'page-home',
@@ -39,10 +40,14 @@ export class HomePage {
       if(this.jurado == undefined) {
         this.wrongCredentials()
       } else {
-        this.navCtrl.setRoot(VotesPage, {
-          group: this.jurado.group,
-          group_member: this.jurado.group_member
-        })
+        if(this.jurado.group == -1 && this.jurado.group_member == -1) {
+          this.navCtrl.setRoot(AdminPage)
+        } else {
+          this.navCtrl.setRoot(VotesPage, {
+            group: this.jurado.group,
+            group_member: this.jurado.group_member
+          })
+        }
       }
     }
   }

@@ -1,3 +1,4 @@
+import { AdminPage } from './../pages/admin/admin';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -17,7 +18,8 @@ import { RestProvider } from '../providers/rest/rest';
   declarations: [
     MyApp,
     HomePage,
-    VotesPage
+    VotesPage,
+    AdminPage
   ],
   imports: [
     HttpModule,
@@ -30,7 +32,8 @@ import { RestProvider } from '../providers/rest/rest';
   entryComponents: [
     MyApp,
     HomePage,
-    VotesPage
+    VotesPage,
+    AdminPage
   ],
   providers: [
     StatusBar,

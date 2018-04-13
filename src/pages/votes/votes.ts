@@ -28,7 +28,8 @@ export class VotesPage {
   current_dropdown: string = undefined
   dropdown_menu: Array<{ id: number, title: string }> = []
 
-  puntuacion = [ 1, 1, 1, 1, 1 ]
+  aviso: string = "" 
+  puntuacion: any[] = [ 1, 1, 1, 1, 1 ]
 
   constructor(
     private rest: RestProvider,
