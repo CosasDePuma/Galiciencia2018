@@ -100,7 +100,7 @@ export class VotesPage {
     let alert = this.alertCtrl.create({
       title: 'Confirmar votación',
       message: '¿Seguro que quieres puntuar al proyecto número '
-        + this.current_dropdown + ' con una media de ' + media + '?',
+        + this.current_dropdown + ': ' + this.all_projects[this.current_dropdown].title + '?',
       buttons: [
         {
           text: 'Cancelar',
