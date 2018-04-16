@@ -17,8 +17,8 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 
 export class VotesPage {
-  
-  MAX_GROUPS = 5
+
+  MAX_GROUPS = 4
   group: number = undefined
   group_member: number = undefined
 
@@ -28,7 +28,7 @@ export class VotesPage {
   current_dropdown: string = undefined
   dropdown_menu: Array<{ id: number, title: string }> = []
 
-  aviso: string = "" 
+  aviso: string = ""
   puntuacion: any[] = [ 1, 1, 1, 1, 1 ]
 
   constructor(
@@ -38,7 +38,7 @@ export class VotesPage {
     public modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController
-  ) {   
+  ) {
     this.group = this.navParams.get('group')
     this.group_member = this.navParams.get('group_member')
   }
@@ -126,7 +126,7 @@ export class VotesPage {
             group: this.group,
             group_member: this.group_member
           });
-          
+
           let toast = this.toastCtrl.create({
             message: 'Votación enviada correctamente',
             duration: 2000,
