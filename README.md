@@ -3,5 +3,7 @@
 ## TODOs
 ------
 
-[Hide Status Bar](https://ionicframework.com/docs/native/status-bar/)
-"Ya has votado a ese proyecto con una media de # puntos"
+"Ya has votado a este proyecto"
+Ver puntuacion en scroll
+Jurado = 4 grupos de 12 proyectos *
+Admin Pages con Ganadores
