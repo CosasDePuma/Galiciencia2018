@@ -11,7 +11,7 @@ import { AdminPage } from '../admin/admin';
 })
 
 export class HomePage {
-  
+
   data: any = undefined;
   jurado: any = undefined;
 
@@ -40,14 +40,10 @@ export class HomePage {
       if(this.jurado == undefined) {
         this.wrongCredentials()
       } else {
-        if(this.jurado.group == -1 && this.jurado.group_member == -1) {
-          this.navCtrl.setRoot(AdminPage)
-        } else {
-          this.navCtrl.setRoot(VotesPage, {
-            group: this.jurado.group,
-            group_member: this.jurado.group_member
-          })
-        }
+        this.navCtrl.setRoot(VotesPage, {
+          group: this.jurado.group,
+          group_member: this.jurado.group_member
+        })
       }
     }
   }
