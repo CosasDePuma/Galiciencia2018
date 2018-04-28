@@ -1,0 +1,18 @@
+{
+  "name": "Galiciencia-Desktop",
+  "version": "1.0.0",
+  "description": "",
+  "test": "electron main.js",
+  "start": "electron main.js",
+  "scripts": {
+    "test": "electron main.js",
+    "start": "electron main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.8.6",
+    "electron-packager": "^12.0.1"
+  }
+}
