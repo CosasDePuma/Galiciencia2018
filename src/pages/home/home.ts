@@ -3,7 +3,6 @@ import { AlertController, NavController } from 'ionic-angular';
 
 import { VotesPage } from '../votes/votes'
 import { RestProvider } from '../../providers/rest/rest';
-import { AdminPage } from '../admin/admin';
 
 @Component({
   selector: 'page-home',
