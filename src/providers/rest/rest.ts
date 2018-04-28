@@ -52,7 +52,7 @@ export class RestProvider {
     return this.http.get(this.restAPI).toPromise()
   }
 
-  updateProyectos(project_id: string, jurado_id: number, valoracion: number) {
+  updateProyectos(project_id: string, jurado_id: number, valoracion: (number | any[])[]) {
     let databaseID = "5ac3b673f36d287dbca62290" // proyectos
 
     this.restAPI = "https://api.mlab.com/api/1/databases/"
@@ -67,7 +67,7 @@ export class RestProvider {
     let options = new HttpHeaders()
     options.append('Content-Type', 'application/json')
 
-    let updateValues = JSON.parse('{ "$set": { "proyectos.' + project_id + '.votes.' + jurado_id + '" : ' + valoracion + ' } }')
+    let updateValues = JSON.parse('{ "$set": { "proyectos.' + project_id + '.votes.' + jurado_id + '" : ' + JSON.stringify(valoracion) + ' } }')
 
     return this.http.put(
       this.restAPI,

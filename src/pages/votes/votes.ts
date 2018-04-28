@@ -93,10 +93,10 @@ export class VotesPage {
     for (let i = 0; i < this.puntuacion.length; i++) {
       media += this.puntuacion[i]
     }
-    return (media / this.puntuacion.length)
+    return [ (media / this.puntuacion.length), this.puntuacion ]
   }
 
-  confirmarVotacion(media: number) {
+  confirmarVotacion(media: (number | any[])[]) {
     let alert = this.alertCtrl.create({
       title: 'Confirmar votación',
       message: '¿Seguro que quieres puntuar al proyecto número '
@@ -119,7 +119,7 @@ export class VotesPage {
     alert.present();
   }
 
-  enviarInfo(media: number) {
+  enviarInfo(media: (number | any[])[]) {
     this.rest.updateProyectos(this.current_dropdown, this.group_member, media).then(
       (res) => {
           this.navCtrl.setRoot(this.navCtrl.getActive().component, {
