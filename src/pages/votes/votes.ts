@@ -54,6 +54,9 @@ export class VotesPage {
         this.splitProyectos()
         this.customDropdown()
       }
+    ).catch(
+      (err) => {
+      }
     )
   }
 
@@ -86,6 +89,16 @@ export class VotesPage {
       buttons: ['Aceptar']
     })
     alert.present()
+  }
+
+  noProjectsAvailable() {
+    let toast = this.toastCtrl.create({
+      message: 'Ha ocurrido un error. Comprueba tu conexión a Internet y reinicia la aplicación',
+      duration: 2000,
+      position: 'bottom'
+    })
+
+    toast.present()
   }
 
   calcularMedia() {
