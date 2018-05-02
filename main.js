@@ -13,7 +13,7 @@ function createWindow() {
   mainWindow.loadURL(`file://${__dirname}/src/index.html`)
   mainWindow.maximize()
 
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed', function() {
     mainWindow = null
