@@ -5,6 +5,7 @@ const _URL = 'https://api.mlab.com/api/1/databases/galiciencia/collections/_2018
   .concat(API)
 
 let proyectos = []
+let ganadores_categoria = []
 
 document.getElementById('csv').addEventListener('click', () => {
   downloadCSV(ordenar(proyectos, 'general'))
@@ -55,14 +56,19 @@ ordenar = (projects, categoria) => {
   let index = 0
 
   switch(categoria) {
+    case 'cc':
     case 'todas':
     case 'general': index = 2; break;
     case 'creatividad': index = 3; break;
-    case 'metodologia': index = 4; break;
+    case 'ciencia': index = 4; break;
+    case 'presentacion': index = 6; break;
     default:
         index = 0
   }
-  return projects.sort(
+
+  return index === 5 ? projects.sort(
+    function(projectA, projectB) { return projectB[index] + projectB[index+1] - projectA[index] - projectA[index+1] }
+  ) : projects.sort(
     function(projectA, projectB) { return projectB[index] - projectA[index] }
   )
 }
@@ -83,15 +89,41 @@ updateCategoria = (projects, categoria) => {
     case 'creatividad':
         index = 0
         break;
+    case 'ciencia':
+        index = 1
+        break;
+    case 'presentacion':
+        index = 2
+        break;
     default:
-        index = -1
+        index = -2
   }
-  let winner = ordenar(ordenar(projects,'general').slice(3,projects.length), categoria)[0]
+  let aux = ordenar(ordenar(projects,'general').slice(3,projects.length), categoria)
+  while(ganadores_categoria.includes(aux[0][0])) {
+    aux = aux.slice(1, aux.length)
+  }
+  let winner = aux[0]
+  ganadores_categoria.push(winner[0])
   document.getElementById(`name-${categoria}`).innerHTML = winner[1]
-  document.getElementById(`points-${categoria}`).innerHTML = 'Puntuación: ' + winner[index+3]
+  document.getElementById(`points-${categoria}`).innerHTML = index === 2 ? 'Puntuación: ' + ((winner[6] + winner[7]) / 2) : 'Puntuación: ' + winner[index+3]
 }
 
+updatePremioEspecial = (projects) => {
+  let especiales = []
+  projects.forEach(project => {
+    if(project.cc)
+      especiales.push(project)
+  })
+  especiales = unificar(especiales)
+  especiales = ordenar(especiales, 'general')
 
+  while(ganadores_categoria.includes(especiales[0][0])) {
+    especiales = especiales.slice(1, especiales.length)
+  }
+
+  document.getElementById('name-cc').innerHTML = especiales[0][1]
+  document.getElementById('points-cc').innerHTML = especiales[0][2]
+}
 
 function downloadCSV(projects)
 {
@@ -107,15 +139,15 @@ function downloadCSV(projects)
       content += line + '\r\n'
   }
 
-  let blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
-  let url = URL.createObjectURL(blob);
+  let blob = new Blob([content], { type: 'text/csv;charset=utf-8;' })
+  let url = URL.createObjectURL(blob)
   let link = document.createElement("a")
-  link.setAttribute("href", url);
-  link.setAttribute("download", 'Galiciencia2018.csv');
-  link.style.visibility = 'hidden';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  link.setAttribute("href", url)
+  link.setAttribute("download", 'Galiciencia2018.csv')
+  link.style.visibility = 'hidden'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
 }
 
 getProjects().then(db => {
@@ -123,4 +155,7 @@ getProjects().then(db => {
   proyectos = unificar(proyectos)
   updatePodio(ordenar(proyectos, 'general'))
   updateCategoria(proyectos, 'creatividad')
+  updateCategoria(proyectos, 'ciencia')
+  updateCategoria(proyectos, 'presentacion')
+  updatePremioEspecial(db.proyectos)
 })
