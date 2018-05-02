@@ -10,7 +10,7 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 
 export class HomePage {
-  
+
   data: any = undefined;
   jurado: any = undefined;
 

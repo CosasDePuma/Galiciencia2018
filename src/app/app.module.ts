@@ -22,7 +22,7 @@ import { RestProvider } from '../providers/rest/rest';
   imports: [
     HttpModule,
     HttpClientModule,
-    
+
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],

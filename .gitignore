@@ -11,7 +11,11 @@ log.txt
 *.sublime-workspace
 .vscode/
 npm-debug.log*
-
+ProjectSettings.json
+VSWorkspaceState.json
+.suo
+.vs/*
+slnx.sqlite
 .idea/
 .sourcemaps/
 .sass-cache/

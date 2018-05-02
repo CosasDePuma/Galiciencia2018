@@ -1,5 +1,5 @@
 // https://fonts.google.com
-@import url('https://fonts.googleapis.com/css?family=Pacifico');
+// @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 // https://coolors.co/47499e-40f99b-9d69a3-f5fbef-e85d75
 page-home {
@@ -9,7 +9,7 @@ page-home {
 
     .background-image {
         position: relative;
-        background-image: url('../assets/imgs/bg.png');
+        background-image: url('https://www.galiciencia.com/wp-content/uploads/2018/01/prueba-fondo-3.jpg');
         background-repeat:no-repeat;
         background-size:100% 100vh;
     }
@@ -21,13 +21,15 @@ page-home {
         top: 30%;
         left: 50%;
         width: 100%;
+        height: 20%;
         transform: translate(-50%,-50%);
     }
 
     .head h1 {
-        font-size: 7vh!important;
+        font-size: 5vh!important;
         font-weight: lighter!important;
-        font-family: 'Pacifico';
+        //font-family: 'Pacifico';
+        font-family: 'Open Sans', sans-serif;
     }
 
     .head h5 {
@@ -37,15 +39,34 @@ page-home {
         font-size: 3vh;
     }
 
+    .logo {
+      width: 250px;
+      height: 10%;
+      background: transparent !important;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      visibility: visible;
+    }
+
+    @media screen and (max-height: 600px){
+      .logo {
+        visibility: hidden;
+      }
+
+      .login-card {
+        transform: translate(-50%, -100%); // CHANGE THIS
+      }
+    }
+
     .login-card {
         position: absolute;
         display: block;
-        top: 60%;
+        top: 70%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 80%;
         color: #ffffff;
-        opacity: 0.6;
+        opacity: 0.8;
     }
 
     .item {

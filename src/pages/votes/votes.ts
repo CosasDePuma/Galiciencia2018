@@ -17,8 +17,8 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 
 export class VotesPage {
-  
-  MAX_GROUPS = 5
+
+  MAX_GROUPS = 4
   group: number = undefined
   group_member: number = undefined
 
@@ -28,7 +28,8 @@ export class VotesPage {
   current_dropdown: string = undefined
   dropdown_menu: Array<{ id: number, title: string }> = []
 
-  puntuacion = [ 1, 1, 1, 1, 1 ]
+  aviso: string = ""
+  puntuacion: any[] = [ 1, 1, 1, 1, 1 ]
 
   constructor(
     private rest: RestProvider,
@@ -37,7 +38,7 @@ export class VotesPage {
     public modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController
-  ) {   
+  ) {
     this.group = this.navParams.get('group')
     this.group_member = this.navParams.get('group_member')
   }
@@ -52,6 +53,9 @@ export class VotesPage {
         this.all_projects = JSON.parse(JSON.stringify(res)).proyectos;
         this.splitProyectos()
         this.customDropdown()
+      }
+    ).catch(
+      (err) => {
       }
     )
   }
@@ -87,19 +91,29 @@ export class VotesPage {
     alert.present()
   }
 
+  noProjectsAvailable() {
+    let toast = this.toastCtrl.create({
+      message: 'Ha ocurrido un error. Comprueba tu conexión a Internet y reinicia la aplicación',
+      duration: 2000,
+      position: 'bottom'
+    })
+
+    toast.present()
+  }
+
   calcularMedia() {
     let media = 0
     for (let i = 0; i < this.puntuacion.length; i++) {
       media += this.puntuacion[i]
     }
-    return (media / this.puntuacion.length)
+    return [ (media / this.puntuacion.length), this.puntuacion ]
   }
 
-  confirmarVotacion(media: number) {
+  confirmarVotacion(media: (number | any[])[]) {
     let alert = this.alertCtrl.create({
       title: 'Confirmar votación',
       message: '¿Seguro que quieres puntuar al proyecto número '
-        + this.current_dropdown + ' con una media de ' + media + '?',
+        + this.current_dropdown + ': ' + this.all_projects[this.current_dropdown].title + '?',
       buttons: [
         {
           text: 'Cancelar',
@@ -118,14 +132,14 @@ export class VotesPage {
     alert.present();
   }
 
-  enviarInfo(media: number) {
+  enviarInfo(media: (number | any[])[]) {
     this.rest.updateProyectos(this.current_dropdown, this.group_member, media).then(
       (res) => {
           this.navCtrl.setRoot(this.navCtrl.getActive().component, {
             group: this.group,
             group_member: this.group_member
           });
-          
+
           let toast = this.toastCtrl.create({
             message: 'Votación enviada correctamente',
             duration: 2000,
