@@ -122,7 +122,7 @@ updatePremioEspecial = (projects) => {
   }
 
   document.getElementById('name-cc').innerHTML = especiales[0][1]
-  document.getElementById('points-cc').innerHTML = especiales[0][2]
+  document.getElementById('points-cc').innerHTML = 'Puntuación: ' + especiales[0][2]
 }
 
 function downloadCSV(projects)
