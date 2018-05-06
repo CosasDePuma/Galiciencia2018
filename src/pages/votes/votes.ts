@@ -63,7 +63,9 @@ export class VotesPage {
   splitProyectos() {
     let index = 0;
     for (let i = 1 + this.group; i < this.all_projects.length; i += this.MAX_GROUPS) {
-      this.custom_projects[index] = this.all_projects[i]
+      if(i === 16) this.custom_projects[index] = this.all_projects[19]
+      else if(i === 19) this.custom_projects[index] = this.all_projects[16]
+      else this.custom_projects[index] = this.all_projects[i]
       index++;
     }
   }
