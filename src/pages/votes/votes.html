@@ -24,7 +24,7 @@
               <ion-item-divider>Proyecto</ion-item-divider>
               <ion-item>
                 <ion-select [(ngModel)]="current_dropdown" [ngModelOptions]="{standalone: true}" placeholder="Nombre del proyecto" interface="popover">
-                  <ion-option *ngFor="let project of dropdown_menu" value="{{project.id}}">{{project.title}}</ion-option>
+                  <ion-option *ngFor="let project of dropdown_menu" (ionSelect)="changeVotes()" value="{{project.id}}">{{project.title}}</ion-option>
                 </ion-select>
               </ion-item>
 
