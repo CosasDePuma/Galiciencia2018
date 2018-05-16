@@ -182,6 +182,8 @@ export class VotesPage {
           toast.present()
 
       }
-    )
+    ).catch(err => {
+      console.log(err)
+    })
   }
 }

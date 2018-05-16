@@ -4,7 +4,8 @@
 // https://coolors.co/47499e-40f99b-9d69a3-f5fbef-e85d75
 page-home {
     .background-color {
-        background: linear-gradient(10deg, #9d69a3, #47499e)
+        // background: linear-gradient(10deg, #9d69a3, #47499e)
+        background: rgb(0, 167, 173);
     }
 
     .background-image {
@@ -40,8 +41,8 @@ page-home {
     }
 
     .logo {
-      width: 250px;
-      height: 10%;
+      width: 500px;
+      height: 30%;
       background: transparent !important;
       position: absolute;
       transform: translate(-50%, -50%);
@@ -71,7 +72,7 @@ page-home {
 
     .item {
         margin-bottom: 16px;
-        background: rgba(245,251,239, 0.9);
+        background: rgb(245,251,239);
     }
 
     button {

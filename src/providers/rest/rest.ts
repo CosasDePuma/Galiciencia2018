@@ -16,14 +16,14 @@ export class RestProvider {
   restAPI:string
   year: string = "_2018"
   apiKey:string = "6vFmPWoWi4kcWL9CEQujs5dzEbxs9O8M"
-  database: string = "galiciencia"
+  database: string = "festiciencia"
 
   constructor(public http: HttpClient) {
 
   }
 
   getJuradoLogin() {
-    let databaseID = "5abb1efa734d1d268cda3599" // login jurado
+    let databaseID = "5afc651d734d1d3038e79477" // login jurado
 
     this.restAPI = "https://api.mlab.com/api/1/databases/"
       .concat(this.database
@@ -38,7 +38,7 @@ export class RestProvider {
   }
 
   getProyectos() {
-    let databaseID = "5ac3b673f36d287dbca62290" // proyectos
+    let databaseID = "5afc64d0734d1d3038e79451" // proyectos
 
     this.restAPI = "https://api.mlab.com/api/1/databases/"
       .concat(this.database
@@ -53,7 +53,7 @@ export class RestProvider {
   }
 
   updateProyectos(project_id: string, jurado_id: number, valoracion: (number | any[])[]) {
-    let databaseID = "5ac3b673f36d287dbca62290" // proyectos
+    let databaseID = "5afc64d0734d1d3038e79451" // proyectos
 
     this.restAPI = "https://api.mlab.com/api/1/databases/"
       .concat(this.database
