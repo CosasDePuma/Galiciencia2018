@@ -1,0 +1,100 @@
+$compañia: #4FACFF;
+
+$border-radius-size: 14px;
+
+div.carta {
+    /* Márgenes respecto al resto de elementos */
+    padding: 20px;
+    margin: 0px;
+
+
+    div.proyecto {
+        /* Fondo de la carta: Blanco */
+        background: white;
+        /* Centrar todo el texto que contenga */
+        text-align: center;
+        /* Redondeamos un poco las esquinas de las cartas */
+        border-radius: $border-radius-size + 5;
+        /* Sombreado de la carta */
+        box-shadow: -1px 15px 30px -12px black;
+
+        div.imagen {
+            /* Le ponemos un fondo a la imagen de la carta */
+            background-size: cover;
+            background: url('http://www.wallmaya.com/wp-content/uploads/2016/06/soft-blue-wallpaper-tumblr-hd-picture.png');
+            /* Redondeamos los bordes superiores del fondo de la imagen */
+            border-top-left-radius: $border-radius-size;
+            border-top-right-radius: $border-radius-size;
+            /* Dejamos un margen entre la imagen y el texto */
+            margin-bottom: 35px;
+        }
+
+
+        div.curso {
+            /* Todo el texto en mayúsculas */
+            text-transform: uppercase;
+            /* Tamaño de letra pequeño */
+            font-size: 12px;
+            /* Aplicamos el efecto negrita estándar */
+            font-weight: bold;
+            /* Dejamos un pequeño margen debajo del texto */
+            margin-bottom: 5px;
+        }
+
+        div.curso.compañia {
+            color: $compañia;
+        }
+
+
+        div.nombre {
+            /* Tamaño de letra grande */
+            font-size: 20px;
+            /* Color de letra negro */
+            color: black;
+            /* Lo más negrita posible */
+            font-weight: 900;
+            /* Dejamos un pequeño margen debajo del texto */
+            margin-bottom: 5px;
+        }
+
+
+        div.descripcion {
+            /* Aplicamos márgenes a todos los lados del texto */
+            padding: 20px;
+            /* Dejamos algo de margen extra debajo del texto */
+            margin-bottom: 10px;
+            /* Color de texto grisáceo */
+            color: #9E9E9E;
+        }
+
+
+        div.valoracion {
+            /* Letra de color blanca */
+            color: white;
+            /* Efecto negrita estándar */
+            font-weight: 700;
+            /* Redondeamos los bordes inferiores */
+            border-bottom-left-radius: $border-radius-size;
+            border-bottom-right-radius: $border-radius-size;
+
+            div.valorar {
+                /* Tamaño de letra grande */
+                font-size: 20px;
+                /* Dejamos un pequeño margen debajo del texto */
+                margin-bottom: 5px;
+                /* Todo el texto en mayúsculas */
+                text-transform: uppercase;
+                /* Pequeño padding */
+                padding: 20px 15px;
+            }
+        }
+
+        div.valoracion.compañia {
+            background: $compañia;
+        }
+    }
+}
+
+
+
+// Idea original: https://codepen.io/drehimself/pen/QNXpyp
